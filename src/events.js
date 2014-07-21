@@ -65,6 +65,10 @@ var utils = utils || {};
           }
         }
       }
+
+      if (!items.length) {
+        delete this._queues[eventName];
+      }
     },
     removeListener: function Events_removeListener(eventName, callback) {
       // If the eventName doesn't exist, or there's no listeners in queue, just leave
@@ -81,9 +85,13 @@ var utils = utils || {};
           len--;
         }
       }
+
+      if (!items.length) {
+        delete this._queues[eventName];
+      }
     },
     removeListeners: function Events_removeListeners(eventName) {
-      this._queues[eventName] = [];
+      delete this._queues[eventName];
     },
     _queues: null
   };
