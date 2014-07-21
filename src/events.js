@@ -76,7 +76,7 @@ var utils = utils || {};
       var items = this._queues[eventName],
           len = items.length;
       for (var i = 0; i < len; i++) {
-        if (items[i].toString() == callback.toString()) {
+        if (items[i].callback.toString() == callback.toString()) {
           items.splice(i, 1);
           len--;
         }

@@ -28,10 +28,6 @@
 
 >
 
-#### el
-
-> JQuery element which contains DOM markup of the A11yAccordion
-
 ## Quick Start
 
 
