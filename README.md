@@ -1,4 +1,4 @@
-# Events v0.1
+﻿# Events v0.1
 
 > Library to create listeners and events for your components.
 
@@ -6,34 +6,32 @@
 
 #### on(eventName, callback);
 
->
+> Will add a listener to the event queue. Return value is an object which contains **remove()** method for the listener and its **token**.
 
 #### once(eventName, callback);
 
->
+> Will add a listener to the event queue. Listener will be fired only once and then removed from the queue. Return value is an object which contains **remove()** method for the listener and its **token**.
 
 #### emit(eventName, args);
 
->
+> Will trigger listeners attached to the event. Args is an array of arguments passed into listeners.
 
-#### removeListener(eventName, callback);
+#### removeListener(eventName, token);
 
->
+> Will remove listener with a specified token from the event queue.
 
 #### removeListeners(eventName);
 
->
+> Will remove any listener in the queue awaiting for event with eventName.
 
-#### showOne
-
->
 
 ## Quick Start
 
 
 ## Release History
 
-* 2014-07-21   v0.1.0   First working version of a library based on the Abdul's work
+* 2014-07-22   v0.1.1   Added tests. Refactored library to work based on tokens assigned to each listener  
+* 2014-07-21   v0.1.0   First working version of a library based on the Abdul's work  
 
 ## License
 The MIT License (MIT)

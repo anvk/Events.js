@@ -1,4 +1,5 @@
 // MIT licensed, Written by Abdul Khan and Alexey Novak, 2014
+// version 0.1.1
 
 var utils = utils || {};
 
@@ -7,6 +8,8 @@ var utils = utils || {};
 
   utils.Events = function() {
     this._init = this._init.bind(this);
+    this._addListener = this._addListener.bind(this);
+    this._generateToken = this._generateToken.bind(this);
 
     this.on = this.on.bind(this);
     this.emit = this.emit.bind(this);
@@ -20,22 +23,38 @@ var utils = utils || {};
     _init: function Events__init() {
       this._queues = {};
     },
+    _generateToken: function Events__generateToken() {
+      // taken from http://stackoverflow.com/a/105074/812519
+      var s4 = function() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+                       .toString(16)
+                       .substring(1);
+      };
+
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                 s4() + '-' + s4() + s4() + s4();
+    },
     _addListener: function Events__addListener(eventName, callback, once) {
       // Create the queue for an event if does not exist yet
       if (!this._queues[eventName]) {
         this._queues[eventName] = [];
       }
 
+      var token = this._generateToken();
+
       // Add the listener to queue
-      var index = this._queues[eventName].push({
+      this._queues[eventName].push({
         callback: callback,
-        once: once
-      }) - 1;
+        once: once,
+        increment: 0,
+        token: token
+      });
 
       // Provide handle back for removal of the listener
       return {
+        token: token,
         remove: function() {
-          delete this._queues[eventName][index];
+          this.removeListener(eventName, token);
         }.bind(this)
       };
     },
@@ -60,6 +79,8 @@ var utils = utils || {};
         if (typeof listener.callback == 'function') {
           listener.callback.apply(undefined, args || []);
 
+          listener.increment++;
+
           // if it is a one time listener then it will remove itself after firing an event
           if (listener.once) {
             items.splice(i, 1);
@@ -72,7 +93,7 @@ var utils = utils || {};
         delete this._queues[eventName];
       }
     },
-    removeListener: function Events_removeListener(eventName, callback) {
+    removeListener: function Events_removeListener(eventName, token) {
       // If the eventName doesn't exist, or there's no listeners in queue, just leave
       if (!this._queues[eventName] || !this._queues[eventName].length) {
         return;
@@ -82,9 +103,10 @@ var utils = utils || {};
       var items = this._queues[eventName],
           len = items.length;
       for (var i = 0; i < len; i++) {
-        if (items[i].callback.toString() == callback.toString()) {
+        if (items[i].token == token) {
           items.splice(i, 1);
           len--;
+          break;
         }
       }
 
