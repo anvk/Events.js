@@ -1,4 +1,4 @@
-﻿# Events v0.1
+﻿# Events v0.1.1
 
 > Library to create listeners and events for your components.
 
@@ -27,6 +27,18 @@
 
 ## Quick Start
 
+```javascript
+var events = new utils.Events();
+
+var callback1 = function() {...};
+var callback2 = function(arg1, arg2) {...};
+
+events.on('event A', callback1);
+events.on('event B', callback2);
+
+events.emit('event A');
+events.emit('event B', [var1, var2]);
+```
 
 ## Release History
 
