@@ -12,7 +12,7 @@
 
 >
 
-#### emit(eventName, info);
+#### emit(eventName, args);
 
 >
 

@@ -1,3 +1,5 @@
+// MIT licensed, Written by Abdul Khan and Alexey Novak, 2014
+
 var utils = utils || {};
 
 // Publish/Subscribe pattern adapted from http://davidwalsh.name/pubsub-javascript
