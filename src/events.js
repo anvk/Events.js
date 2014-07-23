@@ -3,7 +3,8 @@
 
 var utils = utils || {};
 
-// Publish/Subscribe pattern adapted from http://davidwalsh.name/pubsub-javascript
+// Publish/Subscribe pattern adapted from
+// http://davidwalsh.name/pubsub-javascript
 (function() {
 
   utils.Events = function() {
@@ -65,7 +66,7 @@ var utils = utils || {};
       return this._addListener(eventName, callback, true);
     },
     emit: function Events_publish(eventName, args) {
-      // If the eventName doesn't exist, or there's no listeners in queue, just leave
+      // If the eventName doesn't exist, or there's no listeners in queue
       if (!this._queues[eventName] || !this._queues[eventName].length) {
         return;
       }
@@ -81,7 +82,8 @@ var utils = utils || {};
 
           listener.increment++;
 
-          // if it is a one time listener then it will remove itself after firing an event
+          // if it is a one time listener then it will remove itself
+          // after firing an event
           if (listener.once) {
             items.splice(i, 1);
             len--;
@@ -94,7 +96,7 @@ var utils = utils || {};
       }
     },
     removeListener: function Events_removeListener(eventName, token) {
-      // If the eventName doesn't exist, or there's no listeners in queue, just leave
+      // If the eventName doesn't exist, or there's no listeners in queue
       if (!this._queues[eventName] || !this._queues[eventName].length) {
         return;
       }

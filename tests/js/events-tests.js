@@ -15,8 +15,8 @@
 
     describe('_generateToken()', function() {
       it('checking string', function() {
-        var re = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-        expect(events._generateToken().match(re)).to.be.true;
+        var re = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        expect(events._generateToken().match(re).length).to.equal(1);
       });
     });
 
