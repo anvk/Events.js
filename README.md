@@ -1,6 +1,6 @@
 ﻿# Events v0.1.1
 
-> Library to create listeners and events for your components.
+> Tiny 1.5KB library which allows you to add an event based communication for your components.
 
 ## API
 
