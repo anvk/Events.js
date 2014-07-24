@@ -180,7 +180,7 @@
         expect(obj4).to.be.undefined;
         expect(obj5).to.be.undefined;
         expect(obj6).to.be.undefined;
-      }
+      };
 
       it('on', function() {
         test(false);
