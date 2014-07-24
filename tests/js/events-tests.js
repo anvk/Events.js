@@ -174,12 +174,22 @@
             obj4 = events[testOn ? 'on' : 'once']('eventA', null),
             obj5 = events[testOn ? 'on' : 'once'](undefined, undefined),
             obj6 = events[testOn ? 'on' : 'once'](null, null);
-        expect(obj1).to.be.undefined;
+            obj7 = events[testOn ? 'on' : 'once'](10, null);
+            obj8 = events[testOn ? 'on' : 'once'](-10, null);
+            obj9 = events[testOn ? 'on' : 'once'](1.78, null);
+            obj10 = events[testOn ? 'on' : 'once']('', null);
+            obj11 = events[testOn ? 'on' : 'once']('eventA', func1);
+        expect(obj1).to.be.undefined;10
         expect(obj2).to.be.undefined;
         expect(obj3).to.be.undefined;
         expect(obj4).to.be.undefined;
         expect(obj5).to.be.undefined;
         expect(obj6).to.be.undefined;
+        expect(obj7).to.be.undefined;
+        expect(obj8).to.be.undefined;
+        expect(obj9).to.be.undefined;
+        expect(obj10).to.be.undefined;
+        expect(obj11).to.not.be.undefined;
       };
 
       it('on', function() {

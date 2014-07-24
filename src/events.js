@@ -36,6 +36,10 @@ var utils = utils || {};
                  s4() + '-' + s4() + s4() + s4();
     },
     _addListener: function Events__addListener(eventName, callback, once) {
+      if (!eventName || typeof eventName != 'string' || eventName === '' || !callback || typeof callback != 'function') {
+        return;
+      }
+
       // Create the queue for an event if does not exist yet
       if (!this._queues[eventName]) {
         this._queues[eventName] = [];
@@ -60,15 +64,9 @@ var utils = utils || {};
       };
     },
     on: function Events_subscribe(eventName, callback) {
-      if (!eventName || !callback || typeof callback != 'function') {
-        return;
-      }
       return this._addListener(eventName, callback, false);
     },
     once: function Events_once(eventName, callback) {
-      if (!eventName || !callback || typeof callback != 'function') {
-        return;
-      }
       return this._addListener(eventName, callback, true);
     },
     emit: function Events_publish(eventName, args) {
