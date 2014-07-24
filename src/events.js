@@ -36,7 +36,7 @@ var utils = utils || {};
                  s4() + '-' + s4() + s4() + s4();
     },
     _addListener: function Events__addListener(eventName, callback, once) {
-      if (!eventName || typeof eventName != 'string' || eventName === '' || !callback || typeof callback != 'function') {
+      if (typeof eventName != 'string' || eventName === '' || typeof callback != 'function') {
         return;
       }
 
