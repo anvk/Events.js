@@ -167,6 +167,21 @@
         expect(testIndex).to.equal(1);
       };
 
+      var nullUndefinedTest = function(testOn) {
+        var obj1 = events[testOn ? 'on' : 'once'](undefined, func1),
+            obj2 = events[testOn ? 'on' : 'once'](null, func1),
+            obj3 = events[testOn ? 'on' : 'once']('eventA', undefined),
+            obj4 = events[testOn ? 'on' : 'once']('eventA', null),
+            obj5 = events[testOn ? 'on' : 'once'](undefined, undefined),
+            obj6 = events[testOn ? 'on' : 'once'](null, null);
+        expect(obj1).to.be.undefined;
+        expect(obj2).to.be.undefined;
+        expect(obj3).to.be.undefined;
+        expect(obj4).to.be.undefined;
+        expect(obj5).to.be.undefined;
+        expect(obj6).to.be.undefined;
+      }
+
       it('on', function() {
         test(false);
       });
@@ -175,8 +190,12 @@
         test(true);
       });
 
-      it('call on with null or undefined eventName param', function() {
-        
+      it('on null/undefined checks', function() {
+        nullUndefinedTest(true);
+      });
+
+      it('once null/undefined checks', function() {
+        nullUndefinedTest(false);
       });
     });
 
