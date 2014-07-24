@@ -60,9 +60,15 @@ var utils = utils || {};
       };
     },
     on: function Events_subscribe(eventName, callback) {
+      if (!eventName || !callback || typeof callback != 'function') {
+        return;
+      }
       return this._addListener(eventName, callback, false);
     },
     once: function Events_once(eventName, callback) {
+      if (!eventName || !callback || typeof callback != 'function') {
+        return;
+      }
       return this._addListener(eventName, callback, true);
     },
     emit: function Events_publish(eventName, args) {

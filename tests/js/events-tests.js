@@ -174,6 +174,10 @@
       it('once', function() {
         test(true);
       });
+
+      it('call on with null or undefined eventName param', function() {
+        
+      });
     });
 
     describe('emit()', function() {
