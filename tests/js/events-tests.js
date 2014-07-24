@@ -150,6 +150,33 @@
         expect(events._queues['eventA']).to.be.undefined;
       });
 
+      it('eventName and callback param checks', function() {
+        var obj1 = events._addListener(undefined, func1),
+            obj2 = events._addListener(null, func1),
+            obj3 = events._addListener('eventA', undefined),
+            obj4 = events._addListener('eventA', null),
+            obj5 = events._addListener(undefined, undefined),
+            obj5 = events._addListener(undefined, undefined),
+            obj6 = events._addListener(null, null);
+            obj7 = events._addListener(10, null);
+            obj8 = events._addListener(-10, null);
+            obj9 = events._addListener(1.78, null);
+            obj10 = events._addListener('', null);
+            obj11 = events._addListener({'key': 'value'}, null);
+            obj12 = events._addListener('eventA', func1);
+        expect(obj1).to.be.undefined;10
+        expect(obj2).to.be.undefined;
+        expect(obj3).to.be.undefined;
+        expect(obj4).to.be.undefined;
+        expect(obj5).to.be.undefined;
+        expect(obj6).to.be.undefined;
+        expect(obj7).to.be.undefined;
+        expect(obj8).to.be.undefined;
+        expect(obj9).to.be.undefined;
+        expect(obj10).to.be.undefined;
+        expect(obj11).to.be.undefined;
+        expect(obj12).to.not.be.undefined;
+      });
     });
 
     describe('on() & once()', function() {
@@ -167,47 +194,12 @@
         expect(testIndex).to.equal(1);
       };
 
-      var nullUndefinedTest = function(testOn) {
-        var obj1 = events[testOn ? 'on' : 'once'](undefined, func1),
-            obj2 = events[testOn ? 'on' : 'once'](null, func1),
-            obj3 = events[testOn ? 'on' : 'once']('eventA', undefined),
-            obj4 = events[testOn ? 'on' : 'once']('eventA', null),
-            obj5 = events[testOn ? 'on' : 'once'](undefined, undefined),
-            obj6 = events[testOn ? 'on' : 'once'](null, null);
-            obj7 = events[testOn ? 'on' : 'once'](10, null);
-            obj8 = events[testOn ? 'on' : 'once'](-10, null);
-            obj9 = events[testOn ? 'on' : 'once'](1.78, null);
-            obj10 = events[testOn ? 'on' : 'once']('', null);
-            obj11 = events[testOn ? 'on' : 'once']({'key': 'value'}, null);
-            obj12 = events[testOn ? 'on' : 'once']('eventA', func1);
-        expect(obj1).to.be.undefined;10
-        expect(obj2).to.be.undefined;
-        expect(obj3).to.be.undefined;
-        expect(obj4).to.be.undefined;
-        expect(obj5).to.be.undefined;
-        expect(obj6).to.be.undefined;
-        expect(obj7).to.be.undefined;
-        expect(obj8).to.be.undefined;
-        expect(obj9).to.be.undefined;
-        expect(obj10).to.be.undefined;
-        expect(obj11).to.be.undefined;
-        expect(obj12).to.not.be.undefined;
-      };
-
       it('on', function() {
         test(false);
       });
 
       it('once', function() {
         test(true);
-      });
-
-      it('on null/undefined checks', function() {
-        nullUndefinedTest(true);
-      });
-
-      it('once null/undefined checks', function() {
-        nullUndefinedTest(false);
       });
     });
 
