@@ -178,7 +178,8 @@
             obj8 = events[testOn ? 'on' : 'once'](-10, null);
             obj9 = events[testOn ? 'on' : 'once'](1.78, null);
             obj10 = events[testOn ? 'on' : 'once']('', null);
-            obj11 = events[testOn ? 'on' : 'once']('eventA', func1);
+            obj11 = events[testOn ? 'on' : 'once']({'key': 'value'}, null);
+            obj12 = events[testOn ? 'on' : 'once']('eventA', func1);
         expect(obj1).to.be.undefined;10
         expect(obj2).to.be.undefined;
         expect(obj3).to.be.undefined;
@@ -189,7 +190,8 @@
         expect(obj8).to.be.undefined;
         expect(obj9).to.be.undefined;
         expect(obj10).to.be.undefined;
-        expect(obj11).to.not.be.undefined;
+        expect(obj11).to.be.undefined;
+        expect(obj12).to.not.be.undefined;
       };
 
       it('on', function() {
