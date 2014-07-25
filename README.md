@@ -1,4 +1,4 @@
-﻿# Events v0.1.1
+﻿# Events v0.1.2
 
 > Tiny 1.5KB library which allows you to add an event based communication for your components.
 
@@ -41,6 +41,8 @@ events.emit('event B', [var1, var2]);
 ```
 
 ## Release History
+
+* 2014-07-25   v0.1.2   Better error handling on some methods. Added more comprehensive tests.
 
 * 2014-07-22   v0.1.1   Added tests. Refactored library to work based on tokens assigned to each listener  
 * 2014-07-21   v0.1.0   First working version of a library based on the Abdul's work  

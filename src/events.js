@@ -1,5 +1,5 @@
 // MIT licensed, Written by Abdul Khan and Alexey Novak, 2014
-// version 0.1.1
+// version 0.1.2
 
 var utils = utils || {};
 
@@ -36,7 +36,7 @@ var utils = utils || {};
                  s4() + '-' + s4() + s4() + s4();
     },
     _addListener: function Events__addListener(eventName, callback, once) {
-      if (typeof eventName != 'string' || eventName === '' || typeof callback != 'function') {
+      if (typeof eventName !== 'string' || eventName === '' || typeof callback !== 'function') {
         return;
       }
 
@@ -81,7 +81,7 @@ var utils = utils || {};
       for (var i = 0; i < len; i++) {
         var listener = items[i];
 
-        if (typeof listener.callback == 'function') {
+        if (typeof listener.callback === 'function') {
           listener.callback.apply(undefined, args || []);
 
           listener.increment++;
@@ -109,7 +109,7 @@ var utils = utils || {};
       var items = this._queues[eventName],
           len = items.length;
       for (var i = 0; i < len; i++) {
-        if (items[i].token == token) {
+        if (items[i].token === token) {
           items.splice(i, 1);
           len--;
           break;
