@@ -37,7 +37,7 @@ var utils = utils || {};
     },
     _addListener: function Events__addListener(eventName, callback, once) {
       if (typeof eventName !== 'string' || eventName === '' || typeof callback !== 'function') {
-        return;
+        throw 'Event.js: incorrect input parameters';
       }
 
       // Create the queue for an event if does not exist yet

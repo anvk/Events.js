@@ -152,54 +152,56 @@
 
       it('eventName and callback param checks', function() {
         var testCases = [
-              { 
-                eventName: undefined, 
-                callback: func1 
-              },
-              { 
-                eventName: null, 
-                callback: func1 
-              },
-              { 
-                eventName: 'eventA',
-                callback: undefined 
-              },
-              { 
-                eventName: 'eventA', 
-                callback: null 
-              },
-              { 
-                eventName: undefined,
-                callback: undefined 
-              },
-              { 
-                eventName: null,
-                callback: undefined 
-              },
-              { 
-                eventName: 10,
-                callback: null 
-              },
-              { 
-                eventName: -10, 
-                callback: null 
-              },
-              { 
-                eventName: 1.78, 
-                callback: null 
-              },
-              { 
-                eventName: {'key': 'value'},
-                 callback: null 
-              }], obj;
-              
-        for(var a = 0, b = testCases.length; a < b; a++) {
-          obj =  events._addListener(testCases[a].eventName, testCases[a].callback);
-          expect(obj).to.be.undefined;
+          {
+            eventName: undefined,
+            callback: func1
+          },
+          {
+            eventName: null,
+            callback: func1
+          },
+          {
+            eventName: 'eventA',
+            callback: undefined
+          },
+          {
+            eventName: 'eventA',
+            callback: null
+          },
+          {
+            eventName: undefined,
+            callback: undefined
+          },
+          {
+            eventName: null,
+            callback: undefined
+          },
+          {
+            eventName: 10,
+            callback: null
+          },
+          {
+            eventName: -10,
+            callback: null
+          },
+          {
+            eventName: 1.78,
+            callback: null
+          },
+          {
+            eventName: {'key': 'value'},
+             callback: null
+          }];
+
+        for(var i = 0, len = testCases.length; i < len; ++i) {
+          try {
+            events._addListener(testCases[i].eventName, testCases[i].callback);
+          } catch (exception) {
+            expect(exception).to.equal('Event.js: incorrect input parameters');
+          }
         }
 
-        obj = events._addListener('eventA', func1);
-        expect(obj).to.be.not.undefined;
+        expect(events._addListener('eventA', func1)).to.not.be.undefined;
       });
     });
 
