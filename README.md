@@ -1,6 +1,6 @@
 ﻿# Events v0.1.2
 
-> Tiny 1.63KB(129 lines) library which allows you to add an event based communication for your components.
+> Tiny 1.60KB(128 lines) library which allows you to add an event based communication for your components.
 
 ## API
 
