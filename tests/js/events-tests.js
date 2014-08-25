@@ -233,7 +233,7 @@
 
         var func1 = function() {
           events.emit('eventA');
-          counter1 ++;
+          counter1++;
         };
 
         events.once('eventA', func1);
@@ -249,7 +249,7 @@
 
         var func1 = function() {
           events.emit('eventA');
-          counter1 ++;
+          counter1++;
         };
 
         var func2 = function() {
