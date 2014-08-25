@@ -1,5 +1,5 @@
 // MIT licensed, Written by Abdul Khan and Alexey Novak, 2014
-// version 0.1.2
+// version 0.1.3
 
 var utils = utils || {};
 
@@ -63,35 +63,34 @@ var utils = utils || {};
         }.bind(this)
       };
     },
-    on: function Events_subscribe(eventName, callback) {
+    on: function Events_on(eventName, callback) {
       return this._addListener(eventName, callback, false);
     },
     once: function Events_once(eventName, callback) {
       return this._addListener(eventName, callback, true);
     },
-    emit: function Events_publish(eventName, args) {
+    emit: function Events_emit(eventName, args) {
       // If the eventName doesn't exist, or there's no listeners in queue
       if (!this._queues[eventName] || !this._queues[eventName].length) {
         return;
       }
+      args = (args instanceof Array) ? args : [args];
 
       // Cycle through event's queue and fire
       var items = this._queues[eventName],
+          tempItems = items.slice(),
           len = items.length;
       for (var i = 0; i < len; i++) {
-        var listener = items[i];
+        var listener = tempItems[i];
+        // if it is a one time listener then it will remove itself
+        // after firing an event
+        if (listener.once) {
+          items.splice(i, 1);
+        }
 
         if (typeof listener.callback === 'function') {
           listener.callback.apply(undefined, args || []);
-
           listener.increment++;
-
-          // if it is a one time listener then it will remove itself
-          // after firing an event
-          if (listener.once) {
-            items.splice(i, 1);
-            len--;
-          }
         }
       }
 
