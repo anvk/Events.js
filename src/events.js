@@ -1,5 +1,5 @@
 // MIT licensed, Written by Abdul Khan and Alexey Novak, 2014
-// version 0.1.3
+// version 0.1.2
 
 var utils = utils || {};
 
@@ -77,20 +77,21 @@ var utils = utils || {};
 
       // Cycle through event's queue and fire
       var items = this._queues[eventName],
-          tempItems = items.slice(),
           len = items.length;
       for (var i = 0; i < len; i++) {
-        var listener = tempItems[i];
-        // if it is a one time listener then it will remove itself
-        // after firing an event
-        if (listener.once) {
-          items.splice(i, 1);
-        }
+        var listener = items[i];
 
         if (typeof listener.callback === 'function') {
           listener.callback.apply(undefined, args || []);
 
           listener.increment++;
+
+          // if it is a one time listener then it will remove itself
+          // after firing an event
+          if (listener.once) {
+            items.splice(i, 1);
+            len--;
+          }
         }
       }
 

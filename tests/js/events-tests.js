@@ -227,43 +227,6 @@
       it('once', function() {
         test(true);
       });
-
-      it('once() should only be called once ', function() {
-        var counter1 = 0;
-
-        var func1 = function() {
-          events.emit('eventA');
-          counter1++;
-        };
-
-        events.once('eventA', func1);
-        events.emit('eventA');
-        events.emit('eventA');
-
-        expect(counter1).to.equal(1);
-      });
-
-      it('once() and on() should be called the right number of times ', function() {
-        var counter1 = 0,
-            counter2 = 0;
-
-        var func1 = function() {
-          events.emit('eventA');
-          counter1++;
-        };
-
-        var func2 = function() {
-          counter2++;
-        }
-
-        events.once('eventA', func1);
-        events.on('eventA', func2)
-        events.emit('eventA');
-        events.emit('eventA');
-
-        expect(counter1).to.equal(1);
-        expect(counter2).to.equal(3);
-      });
     });
 
     describe('emit()', function() {
