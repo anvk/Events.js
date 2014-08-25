@@ -1,7 +1,7 @@
 {
   "name": "Events.js",
   "version": "0.1.3",
-  "description": "Tiny 1.5KB library which allows you to add an event based communication for your components.",
+  "description": "Tiny 1.63KB(129 lines) library which allows you to add an event based communication for your components.",
   "contributors": [
     {
       "name": "Abdul Khan",
